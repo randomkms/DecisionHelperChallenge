@@ -1,0 +1,57 @@
+{
+  "Id": "0bb898cd-2aa4-4e7b-b72a-bf5793e24037",
+  "Question": "Do I want a doughnut?",
+  "Children": [
+    {
+      "Id": "4efbf498-1114-4697-bf2a-40b97933a677",
+      "Question": "Do I deserve it?",
+      "Answer": "Yes",
+      "Children": [
+        {
+          "Id": "a693e84d-0e2f-449e-9867-c4db52699ade",
+          "Question": "Are you sure?",
+          "Answer": "Yes",
+          "Children": [
+            {
+              "Id": "0f251b78-2907-415e-8155-d12b6f60f447",
+              "Answer": "Yes",
+              "Result": "Get it",
+              "Children": []
+            },
+            {
+              "Id": "0d517615-fcce-4aa9-a171-55248a29decf",
+              "Answer": "No",
+              "Result": "Do jumping jacks first",
+              "Children": []
+            }
+          ]
+        },
+        {
+          "Id": "4d11d356-eb2f-4ccf-8d2a-6f53a5e40369",
+          "Question": "Is it a good doughnut?",
+          "Answer": "No",
+          "Children": [
+            {
+              "Id": "569503c0-d610-41cb-8e50-ff2c7ff43f23",
+              "Answer": "Yes",
+              "Result": "What are you waiting for? Grab it now",
+              "Children": []
+            },
+            {
+              "Id": "109f2cd6-8e97-4324-978d-7c467fce4970",
+              "Answer": "No",
+              "Result": "Wait \u0027till you find a sinful, unforgettable doughnut",
+              "Children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "bc0cd618-ff00-45fe-854d-9077bfd40e89",
+      "Answer": "No",
+      "Result": "Maybe you want an apple?",
+      "Children": []
+    }
+  ]
+}
