@@ -1,6 +1,5 @@
 ﻿using DecisionHelper.API.Abstract;
 using DecisionHelper.API.Models;
-using DecisionHelper.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -10,11 +9,11 @@ namespace DecisionHelper.API.Controllers
     [ApiController]
     public class DecisionTreeController : ControllerBase
     {
-        private readonly IDecisionTreeService _decisionTreeService;
+        private readonly IDecisionTreeQueries _decisionTreeQueries;
 
-        public DecisionTreeController(IDecisionTreeService decisionTreeService)
+        public DecisionTreeController(IDecisionTreeQueries decisionTreeService)
         {
-            _decisionTreeService = decisionTreeService;
+            _decisionTreeQueries = decisionTreeService;
         }
 
         [HttpGet]
@@ -22,7 +21,7 @@ namespace DecisionHelper.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public IActionResult FirstDecision([FromQuery] string treeName)
         {
-            var result = _decisionTreeService.GetFirstDecision(treeName);
+            var result = _decisionTreeQueries.GetFirstDecision(treeName);
             if (result == null)
                 return NotFound();
 
@@ -34,7 +33,7 @@ namespace DecisionHelper.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public IActionResult Decision(Guid decisionId)
         {
-            var result = _decisionTreeService.GetDecisionById(decisionId);
+            var result = _decisionTreeQueries.GetDecisionById(decisionId);
             if (result == null)
                 return NotFound();
 
@@ -42,11 +41,11 @@ namespace DecisionHelper.API.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(DecisionNode), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(DecisionNodeDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public IActionResult DecisionTree(string treeName)
         {
-            var result = _decisionTreeService.GetDecisionTree(treeName);
+            var result = _decisionTreeQueries.GetDecisionTree(treeName);
             if (result == null)
                 return NotFound();
 
@@ -57,7 +56,7 @@ namespace DecisionHelper.API.Controllers
         [ProducesResponseType(typeof(IReadOnlyList<string>), (int)HttpStatusCode.OK)]
         public IActionResult DecisionTrees()
         {
-            var result = _decisionTreeService.GetDecisionTrees();
+            var result = _decisionTreeQueries.GetDecisionTrees();
             return Ok(result);
         }
     }

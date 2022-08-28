@@ -1,4 +1,5 @@
 using DecisionHelper.API.Extensions;
+using DecisionHelper.Infrastructure;
 
 const string corsPolicyName = "AllowAll";
 
@@ -10,13 +11,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddInfrastructure();
 builder.Services.AddCustomServices();
 
 var app = builder.Build();
 
 app.UseCors(corsPolicyName);
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -24,8 +25,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-// app.UseAuthorization();//TODO mb remove
 
 app.MapControllers();
 

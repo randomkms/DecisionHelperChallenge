@@ -1,7 +1,5 @@
 ﻿using DecisionHelper.API.Abstract;
 using DecisionHelper.API.Services;
-using DecisionHelper.Domain.Abstract;
-using DecisionHelper.Infrastructure.Repositories;
 
 namespace DecisionHelper.API.Extensions
 {
@@ -19,8 +17,7 @@ namespace DecisionHelper.API.Extensions
 
         public static IServiceCollection AddCustomServices(this IServiceCollection services)
         {
-            services.AddSingleton<IDecisionTreeRepository, DecisionTreeRepository>();
-            services.AddSingleton<IDecisionTreeService, DecisionTreeService>();
+            services.AddSingleton<IDecisionTreeQueries, DecisionTreeQueries>();
 
             return services;
         }

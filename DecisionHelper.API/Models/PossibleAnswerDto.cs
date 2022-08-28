@@ -1,10 +1,7 @@
-﻿using System;
-using System.Text.Json.Serialization;
-
-namespace DecisionHelper.API.Models
+﻿namespace DecisionHelper.API.Models
 {
     public record PossibleAnswerDto(
-        [property: JsonPropertyName("id")] Guid Id,
-        [property: JsonPropertyName("answer")] string? Answer
+        Guid Id,
+        string? Answer
     );
 }

@@ -1,9 +1,10 @@
 ﻿namespace DecisionHelper.API.Models
 {
-    public record DecisionDto(
+    public record DecisionNodeDto(
         Guid Id,
         string? Question,
+        string? Answer,
         string? Result,
-        IReadOnlyList<PossibleAnswerDto> PossibleAnswers
+        IReadOnlyList<DecisionNodeDto> Children
     );
 }

@@ -5,11 +5,11 @@ using DecisionHelper.Domain.Models;
 
 namespace DecisionHelper.API.Services
 {
-    public class DecisionTreeService : IDecisionTreeService
+    public class DecisionTreeQueries : IDecisionTreeQueries
     {
         private readonly IDecisionTreeRepository _decisionTreeRepository;
 
-        public DecisionTreeService(IDecisionTreeRepository decisionTreeRepository)
+        public DecisionTreeQueries(IDecisionTreeRepository decisionTreeRepository)
         {
             _decisionTreeRepository = decisionTreeRepository;
         }
@@ -33,12 +33,13 @@ namespace DecisionHelper.API.Services
             return decision == null ? null : MapNodeToDecisionDto(decision);
         }
 
-        public DecisionNode? GetDecisionTree(string treeName)
+        public DecisionNodeDto? GetDecisionTree(string treeName)
         {
-            return _decisionTreeRepository.GetDecisionTree(treeName); //TODO move to DTO
+            var decisionTree = _decisionTreeRepository.GetDecisionTree(treeName);
+            return decisionTree == null ? null : MapNodeToDecisionNodeDto(decisionTree);
         }
 
-        private static DecisionDto MapNodeToDecisionDto(DecisionNode node)
+        private static DecisionDto MapNodeToDecisionDto(DecisionNode node)// TODO mb move to mapper
         {
             return new DecisionDto(node.Id, node.Question, node.Result, node.Children
                 .Select(n => MapNodeToPossibleAnswerDto(n)).ToArray());
@@ -47,6 +48,12 @@ namespace DecisionHelper.API.Services
         private static PossibleAnswerDto MapNodeToPossibleAnswerDto(DecisionNode node)
         {
             return new PossibleAnswerDto(node.Id, node.Answer);
+        }
+
+        private static DecisionNodeDto MapNodeToDecisionNodeDto(DecisionNode node)
+        {
+            return new DecisionNodeDto(node.Id, node.Question, node.Answer, node.Result,
+                node.Children.Select(childNode => MapNodeToDecisionNodeDto(childNode)).ToArray());
         }
     }
 }

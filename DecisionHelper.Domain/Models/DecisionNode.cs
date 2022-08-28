@@ -1,11 +1,20 @@
 ﻿namespace DecisionHelper.Domain.Models
 {
-    public class DecisionNode
+    public record DecisionNode
     {
-        public Guid Id { get; set; }
-        public string? Question { get; set; }
-        public string? Answer { get; set; }
-        public string? Result { get; set; }
-        public List<DecisionNode> Children { get; set; } = new List<DecisionNode>();
+        public DecisionNode(Guid id, string? question, string? answer, string? result, IReadOnlyList<DecisionNode> children)
+        {
+            Id = id;
+            Question = question;
+            Answer = answer;
+            Result = result;
+            Children = children;
+        }
+
+        public Guid Id { get; init; }
+        public string? Question { get; init; }
+        public string? Answer { get; init; }
+        public string? Result { get; init; }
+        public IReadOnlyList<DecisionNode> Children { get; init; }
     }
 }
