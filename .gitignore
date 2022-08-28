@@ -25,13 +25,12 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+build/
+dist/
+public/
 
 # Visual Studio 2015 cache/options directory
 .vs/
-/wwwroot/dist/
-/ClientApp/dist/
-/GhostUI/wwwroot/dist
-/GhostUI/ClientApp/dist
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
@@ -267,4 +266,3 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
-/GhostUI/ClientApp/build

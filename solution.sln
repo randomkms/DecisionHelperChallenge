@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GhostUI", "GhostUI\GhostUI.csproj", "{07B28075-ED26-412D-9CB6-3CD29C2AC86F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8A476A61-A3BC-4D4E-97FC-B6DC8EFCB853}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DecisionHelper.API", "DecisionHelper.API\DecisionHelper.API.csproj", "{7B8A7167-A30D-4EA9-AE14-AFD5299A4395}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B6F892BB-D77A-4C43-B153-D808BCACEA6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecisionHelper.Infrastructure", "DecisionHelper.Infrastructure\DecisionHelper.Infrastructure.csproj", "{954EEDFE-7930-48BA-9FDC-0D88108DE488}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebUI", "src\WebUI\WebUI.csproj", "{07B28075-ED26-412D-9CB6-3CD29C2AC86F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecisionHelper.Domain", "DecisionHelper.Domain\DecisionHelper.Domain.csproj", "{1B95F808-BA9B-4429-8F3A-B641E637F530}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DecisionHelper.API", "src\DecisionHelper.API\DecisionHelper.API.csproj", "{7B8A7167-A30D-4EA9-AE14-AFD5299A4395}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DecisionHelper.Infrastructure", "src\DecisionHelper.Infrastructure\DecisionHelper.Infrastructure.csproj", "{954EEDFE-7930-48BA-9FDC-0D88108DE488}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DecisionHelper.Domain", "src\DecisionHelper.Domain\DecisionHelper.Domain.csproj", "{1B95F808-BA9B-4429-8F3A-B641E637F530}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +40,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{07B28075-ED26-412D-9CB6-3CD29C2AC86F} = {8A476A61-A3BC-4D4E-97FC-B6DC8EFCB853}
+		{7B8A7167-A30D-4EA9-AE14-AFD5299A4395} = {8A476A61-A3BC-4D4E-97FC-B6DC8EFCB853}
+		{954EEDFE-7930-48BA-9FDC-0D88108DE488} = {8A476A61-A3BC-4D4E-97FC-B6DC8EFCB853}
+		{1B95F808-BA9B-4429-8F3A-B641E637F530} = {8A476A61-A3BC-4D4E-97FC-B6DC8EFCB853}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D460BDE0-0DDC-4449-8606-B39723D467BB}
