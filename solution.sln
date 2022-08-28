@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GhostUI", "GhostUI\GhostUI.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DecisionHelper.API", "DecisionHelper.API\DecisionHelper.API.csproj", "{7B8A7167-A30D-4EA9-AE14-AFD5299A4395}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecisionHelper.Infrastructure", "DecisionHelper.Infrastructure\DecisionHelper.Infrastructure.csproj", "{954EEDFE-7930-48BA-9FDC-0D88108DE488}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecisionHelper.Domain", "DecisionHelper.Domain\DecisionHelper.Domain.csproj", "{1B95F808-BA9B-4429-8F3A-B641E637F530}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{7B8A7167-A30D-4EA9-AE14-AFD5299A4395}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B8A7167-A30D-4EA9-AE14-AFD5299A4395}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B8A7167-A30D-4EA9-AE14-AFD5299A4395}.Release|Any CPU.Build.0 = Release|Any CPU
+		{954EEDFE-7930-48BA-9FDC-0D88108DE488}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{954EEDFE-7930-48BA-9FDC-0D88108DE488}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{954EEDFE-7930-48BA-9FDC-0D88108DE488}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{954EEDFE-7930-48BA-9FDC-0D88108DE488}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B95F808-BA9B-4429-8F3A-B641E637F530}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B95F808-BA9B-4429-8F3A-B641E637F530}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B95F808-BA9B-4429-8F3A-B641E637F530}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B95F808-BA9B-4429-8F3A-B641E637F530}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
