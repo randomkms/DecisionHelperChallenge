@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  webui:
+    image: ${DOCKER_REGISTRY-}webui
+    build:
+      context: .
+      dockerfile: src/WebUI/Dockerfile
+    ports:
+      - "5010:80"
+
+  decisionhelper.api:
+    image: ${DOCKER_REGISTRY-}decisionhelperapi
+    build:
+      context: .
+      dockerfile: src/DecisionHelper.API/Dockerfile
+    ports:
+      - "5000:80"
+      - "5001:443"
