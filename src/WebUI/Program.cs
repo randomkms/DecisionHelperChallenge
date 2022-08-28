@@ -14,9 +14,6 @@ builder.Services.AddCorsConfig(corsPolicyName);
 // Add Brotli/Gzip response compression (prod only)
 builder.Services.AddResponseCompressionConfig(builder.Configuration);
 
-// Config change in asp.net core 3.0+ - 'Async' suffix in action names get stripped by default - so, to access them by full name with 'Async' part - opt out of this feature.
-//builder.Services.AddMvc(opt => opt.SuppressAsyncSuffixInActionNames = false);
-
 // In production, the React files will be served from this directory
 builder.Services.AddSpaStaticFiles(opt => opt.RootPath = $"{spaSrcPath}/dist");
 
