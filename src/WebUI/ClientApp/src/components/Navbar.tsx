@@ -1,6 +1,7 @@
 import { Routes as routes } from '../config';
 import type { FunctionComponent } from 'react';
 import { NavLink, generatePath } from 'react-router-dom';
+import LogoSrc from '../assets/image/lobsterLogo.png';
 
 const Navbar: FunctionComponent = () => {
   return (
@@ -11,12 +12,13 @@ const Navbar: FunctionComponent = () => {
     >
       <div className="navbar-wrapper">
         <div className="brand-wrapper">
-        <p className="title is-1 has-text-white">Lobster Inc</p>
+          <img src={LogoSrc} style={{height: "3rem"}} />
+          <p className="title is-1 has-text-white">Lobster Inc</p>
         </div>
         <div className="navbar-routes">
-          {/* isLoggedIn && */
+          {
             routes
-            .filter(({ showInNav }) => showInNav)
+              .filter(({ showInNav }) => showInNav)
               .map(({ path, name, params }) => (
                 <NavLink
                   key={name}
