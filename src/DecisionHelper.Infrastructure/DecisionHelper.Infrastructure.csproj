@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="DecisionTrees\Computer games.json" />
+    <None Remove="DecisionTrees\ComputerGames.json" />
     <None Remove="DecisionTrees\Doughnut.json" />
     <None Remove="DecisionTrees\Lobster.json" />
   </ItemGroup>
@@ -23,7 +23,7 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Include="DecisionTrees\Computer games.json">
+    <Content Include="DecisionTrees\ComputerGames.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

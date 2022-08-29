@@ -14,15 +14,16 @@ namespace DecisionHelper.Infrastructure.Repositories.Redis
             _redisClient = redisClient;
         }
 
-        public async Task<DecisionNode?> GetDecisionTreeAsync(string treeName)
+        public async Task<DecisionNode?> GetDecisionTreeRootAsync(string treeName)
         {
             return await _redisClient.GetDb(RedisConsts.TreesDb).GetAsync<DecisionNode>(treeName);
         }
 
-        public async Task<IReadOnlyCollection<string>> GetDecisionTreesAsync()
+        public async Task<IReadOnlyCollection<DecisionTreeInfo>> GetDecisionTreesAsync()
         {
-            var searchKeys = await _redisClient.GetDb(RedisConsts.TreesDb).SearchKeysAsync("*");
-            return searchKeys.ToArray();
+            var treeInfos = await _redisClient.GetDb(RedisConsts.TreesInfoDb)
+                .GetAsync<IReadOnlyCollection<DecisionTreeInfo>>(RedisConsts.TreesInfoListKey);
+            return treeInfos ?? Array.Empty<DecisionTreeInfo>();
         }
 
         public async Task<DecisionNode?> GetDecisionByIdAsync(Guid chosenNodeId)

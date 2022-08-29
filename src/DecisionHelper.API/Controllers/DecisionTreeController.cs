@@ -1,5 +1,6 @@
 ﻿using DecisionHelper.API.Abstract;
 using DecisionHelper.API.Models;
+using DecisionHelper.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -57,7 +58,7 @@ namespace DecisionHelper.API.Controllers
 
         [HttpGet]
         [ActionName("decisionTrees")]
-        [ProducesResponseType(typeof(IReadOnlyList<string>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IReadOnlyList<DecisionTreeInfo>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetDecisionTreesAsync()
         {
             var result = await _decisionTreeQueries.GetDecisionTreesAsync();

@@ -1,0 +1,52 @@
+{
+  "Name": "Computer games",
+  "Description": "This decision tree will show you what to play",
+  "ImageUrl": "https://media.threatpost.com/wp-content/uploads/sites/103/2019/07/26142447/gamer.jpg",
+  "Root": {
+    "Question": "What games genre do you want to try?",
+    "Children": [
+      {
+        "Answer": "Real time strategies",
+        "Result": "I would recommend you Starcraft 2!",
+        "Children": []
+      },
+      {
+        "Question": "Does real world looking graphic required for you?",
+        "Answer": "Battle royal",
+        "Children": [
+          {
+            "Answer": "Yes",
+            "Result": "I would recommend you PUBG!",
+            "Children": []
+          },
+          {
+            "Answer": "No",
+            "Result": "I would recommend you Fortnite!",
+            "Children": []
+          }
+        ]
+      },
+      {
+        "Answer": "MMORPG",
+        "Result": "I would recommend you World Of Warcraft! (TBC and Lich king patches)",
+        "Children": []
+      },
+      {
+        "Question": "Do you have steel nerves?",
+        "Answer": "MOBA",
+        "Children": [
+          {
+            "Answer": "Yes",
+            "Result": "I would recommend you Dota 2! Ask for mid or feed!",
+            "Children": []
+          },
+          {
+            "Answer": "No",
+            "Result": "I would recommend you games of a different genre =)",
+            "Children": []
+          }
+        ]
+      }
+    ]
+  }
+}

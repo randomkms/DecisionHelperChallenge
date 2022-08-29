@@ -14,16 +14,16 @@ namespace DecisionHelper.API.Services
             _decisionTreeRepository = decisionTreeRepository;
         }
 
-        public async Task<IReadOnlyList<string>> GetDecisionTreesAsync()
+        public async Task<IReadOnlyList<DecisionTreeInfo>> GetDecisionTreesAsync()
         {
             return (await _decisionTreeRepository.GetDecisionTreesAsync())
-                .OrderBy(t => t)
+                .OrderBy(info => info.Name)
                 .ToArray();
         }
 
         public async Task<DecisionDto?> GetFirstDecisionAsync(string treeName)
         {
-            var decisionTree = await _decisionTreeRepository.GetDecisionTreeAsync(treeName);
+            var decisionTree = await _decisionTreeRepository.GetDecisionTreeRootAsync(treeName);
             return decisionTree == null ? null : MapNodeToDecisionDto(decisionTree);
         }
 
@@ -35,7 +35,7 @@ namespace DecisionHelper.API.Services
 
         public async Task<DecisionNodeDto?> GetDecisionTreeAsync(string treeName)
         {
-            var decisionTree = await _decisionTreeRepository.GetDecisionTreeAsync(treeName);
+            var decisionTree = await _decisionTreeRepository.GetDecisionTreeRootAsync(treeName);
             return decisionTree == null ? null : MapNodeToDecisionNodeDto(decisionTree);
         }
 

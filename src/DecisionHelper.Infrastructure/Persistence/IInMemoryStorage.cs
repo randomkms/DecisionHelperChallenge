@@ -6,5 +6,6 @@ namespace DecisionHelper.Infrastructure.Persistence
     {
         IDictionary<Guid, DecisionNode> Nodes { get; }
         IDictionary<string, DecisionNode> Trees { get; }
+        IList<DecisionTreeInfo> TreesInfo { get; }
     }
 }

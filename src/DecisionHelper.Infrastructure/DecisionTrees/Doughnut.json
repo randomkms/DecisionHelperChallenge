@@ -1,48 +1,53 @@
 {
-  "Question": "Do I want a doughnut?",
-  "Children": [
-    {
-      "Question": "Do I deserve it?",
-      "Answer": "Yes",
-      "Children": [
-        {
-          "Question": "Are you sure?",
-          "Answer": "Yes",
-          "Children": [
-            {
-              "Answer": "Yes",
-              "Result": "Get it",
-              "Children": []
-            },
-            {
-              "Answer": "No",
-              "Result": "Do jumping jacks first",
-              "Children": []
-            }
-          ]
-        },
-        {
-          "Question": "Is it a good doughnut?",
-          "Answer": "No",
-          "Children": [
-            {
-              "Answer": "Yes",
-              "Result": "What are you waiting for? Grab it now",
-              "Children": []
-            },
-            {
-              "Answer": "No",
-              "Result": "Wait \u0027till you find a sinful, unforgettable doughnut",
-              "Children": []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Answer": "No",
-      "Result": "Maybe you want an apple?",
-      "Children": []
-    }
-  ]
+  "Name": "Doughnut",
+  "Description": "Fun decision tree about doughnuts",
+  "ImageUrl": "https://st3.depositphotos.com/1526816/16542/v/450/depositphotos_165420570-stock-illustration-phrase-i-love-donut-with.jpg",
+  "Root": {
+    "Question": "Do I want a doughnut?",
+    "Children": [
+      {
+        "Question": "Do I deserve it?",
+        "Answer": "Yes",
+        "Children": [
+          {
+            "Question": "Are you sure?",
+            "Answer": "Yes",
+            "Children": [
+              {
+                "Answer": "Yes",
+                "Result": "Get it",
+                "Children": []
+              },
+              {
+                "Answer": "No",
+                "Result": "Do jumping jacks first",
+                "Children": []
+              }
+            ]
+          },
+          {
+            "Question": "Is it a good doughnut?",
+            "Answer": "No",
+            "Children": [
+              {
+                "Answer": "Yes",
+                "Result": "What are you waiting for? Grab it now",
+                "Children": []
+              },
+              {
+                "Answer": "No",
+                "Result": "Wait \u0027till you find a sinful, unforgettable doughnut",
+                "Children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Answer": "No",
+        "Result": "Maybe you want an apple?",
+        "Children": []
+      }
+    ]
+  }
 }

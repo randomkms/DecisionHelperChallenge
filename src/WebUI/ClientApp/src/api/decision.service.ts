@@ -1,6 +1,7 @@
 import { BaseService } from './base.service';
 import type { Decision } from 'src/store/decisionSlice';
 import type { DecisionNode } from 'src/store/decisionTreeSlice';
+import type { DecisionTreeInfo } from 'src/store/decisionTreesSlice';
 
 class DecisionService extends BaseService {
   private static _decisionService: DecisionService;
@@ -35,9 +36,9 @@ class DecisionService extends BaseService {
     return data;
   }
 
-  public async getDecisionTreesAsync(): Promise<string[]> {
+  public async getDecisionTreesAsync(): Promise<DecisionTreeInfo[]> {
     const url = `decisionTrees`;
-    const { data } = await this.$http.get<string[]>(url);
+    const { data } = await this.$http.get<DecisionTreeInfo[]>(url);
 
     return data;
   }

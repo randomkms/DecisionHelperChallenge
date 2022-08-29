@@ -13,12 +13,12 @@ namespace DecisionHelper.Infrastructure.Repositories.InMemory
             _storage = storage;
         }
 
-        public Task<IReadOnlyCollection<string>> GetDecisionTreesAsync()
+        public Task<IReadOnlyCollection<DecisionTreeInfo>> GetDecisionTreesAsync()
         {
-            return Task.FromResult<IReadOnlyCollection<string>>(_storage.Trees.Keys.ToArray());
+            return Task.FromResult<IReadOnlyCollection<DecisionTreeInfo>>(_storage.TreesInfo.ToArray());
         }
 
-        public Task<DecisionNode?> GetDecisionTreeAsync(string treeName)
+        public Task<DecisionNode?> GetDecisionTreeRootAsync(string treeName)
         {
             if (_storage.Trees.TryGetValue(treeName, out var node))
                 return Task.FromResult<DecisionNode?>(node);

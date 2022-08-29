@@ -14,10 +14,11 @@ namespace DecisionHelper.Infrastructure.Seeds
 
         public Task SeedAsync()
         {
-            foreach (var (name, tree) in DecisionTreesFilesHelper.GetTrees())
+            foreach (var tree in DecisionTreesFilesHelper.GetTrees())
             {
-                _storage.Trees.Add(name, tree);
-                AddNodesToDict(tree);
+                _storage.Trees.Add(tree.Name, tree.Root);
+                AddNodesToDict(tree.Root);
+                _storage.TreesInfo.Add(tree.ToDecisionTreeInfo());
             }
 
             return Task.CompletedTask;

@@ -17,12 +17,17 @@ namespace DecisionHelper.Infrastructure.Seeds
         {
             await _redisClient.GetDb(RedisConsts.TreesDb).FlushDbAsync();
             await _redisClient.GetDb(RedisConsts.NodesDb).FlushDbAsync();
+            await _redisClient.GetDb(RedisConsts.TreesInfoDb).FlushDbAsync();
+            var treeInfos = new List<DecisionTreeInfo>();
 
-            foreach (var (name, tree) in DecisionTreesFilesHelper.GetTrees())
+            foreach (var tree in DecisionTreesFilesHelper.GetTrees())
             {
-                await _redisClient.GetDb(RedisConsts.TreesDb).AddAsync(name, tree);
-                await AddNodesToDictAsync(tree);
+                await _redisClient.GetDb(RedisConsts.TreesDb).AddAsync(tree.Name, tree.Root);
+                await AddNodesToDictAsync(tree.Root);
+                treeInfos.Add(tree.ToDecisionTreeInfo());
             }
+
+            await _redisClient.GetDb(RedisConsts.TreesInfoDb).AddAsync(RedisConsts.TreesInfoListKey, treeInfos);
         }
 
         private async Task AddNodesToDictAsync(DecisionNode node)

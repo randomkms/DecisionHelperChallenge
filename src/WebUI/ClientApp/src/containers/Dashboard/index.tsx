@@ -16,6 +16,26 @@ const Dashboard: FunctionComponent = () => (
       </div>
     </section>
     <section className="container">
+      <div className="card" style={{ marginBottom: '1rem', marginTop: '1rem' }}>
+        <div className="card-content">
+          <div className="column">
+            <p className="title has-text-centered">Challenge description</p>
+            <hr />
+            <div className="columns is-multiline">
+              <div className="column dashboard-info">
+                <div className="content">
+                  Write a simple web application which allows a player to choose their own path by picking
+                  between two choices displayed on their screen in order to progress to the next set of
+                  choices, until they get to one of the endings. You should be able to persist the player's
+                  choices and show the steps they took to get to the end of the game.
+                  A major bonus would be a tree diagram page that shows all the possible choices, and
+                  highlights the choices the user has made for the story.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="card">
         <div className="card-content">
           <div className="column">

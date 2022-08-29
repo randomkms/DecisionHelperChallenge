@@ -32,19 +32,29 @@ namespace DecisionHelper.UnitTests
         [Fact]
         public async Task GetDecisionTreesAsync_ShouldReturnSortedTreeNames_WhenDataIsValid()
         {
+            var treesInfos = new[]
+            {
+                new DecisionTreeInfo("IceCream")
+                {
+                    ImageUrl = _fixture.Create<string>(),
+                    Description = _fixture.Create<string>(),
+                },
+                new DecisionTreeInfo("Doughnut"),
+            };
+
             _decisionTreeRepositoryMock.Setup(r => r.GetDecisionTreesAsync())
-                .ReturnsAsync(new[] { "IceCream", "Doughnut" });
+                .ReturnsAsync(treesInfos);
 
             var result = await _sut.GetDecisionTreesAsync();
 
-            Assert.Equivalent(new[] { "Doughnut", "IceCream" }, result);
+            Assert.Equivalent(new[] { treesInfos[1], treesInfos[0] }, result);
         }
 
         [Fact]
         public async Task GetDecisionTreesAsync_ShouldReturnEmptyCollection_WhenNoTreesExist()
         {
             _decisionTreeRepositoryMock.Setup(r => r.GetDecisionTreesAsync())
-                .ReturnsAsync(Array.Empty<string>());
+                .ReturnsAsync(Array.Empty<DecisionTreeInfo>());
 
             var result = await _sut.GetDecisionTreesAsync();
 
@@ -58,7 +68,7 @@ namespace DecisionHelper.UnitTests
                 .With(p => p.Children, () => _fixture.CreateMany<DecisionNode>(2).ToArray())
                 .Create();
             var treeName = _fixture.Create<string>();
-            _decisionTreeRepositoryMock.Setup(r => r.GetDecisionTreeAsync(treeName))
+            _decisionTreeRepositoryMock.Setup(r => r.GetDecisionTreeRootAsync(treeName))
                 .ReturnsAsync(tree);
 
             var result = await _sut.GetFirstDecisionAsync(treeName);
@@ -76,7 +86,7 @@ namespace DecisionHelper.UnitTests
         {
             var tree = _fixture.Create<DecisionNode>();
             var treeName = _fixture.Create<string>();
-            _decisionTreeRepositoryMock.Setup(r => r.GetDecisionTreeAsync(treeName))
+            _decisionTreeRepositoryMock.Setup(r => r.GetDecisionTreeRootAsync(treeName))
                 .ReturnsAsync(tree);
 
             var result = await _sut.GetFirstDecisionAsync(treeName);
@@ -88,7 +98,7 @@ namespace DecisionHelper.UnitTests
         public async Task GetFirstDecisionAsync_ShouldReturnNull_WhenTreeIsNotFound()
         {
             var treeName = _fixture.Create<string>();
-            _decisionTreeRepositoryMock.Setup(r => r.GetDecisionTreeAsync(treeName))
+            _decisionTreeRepositoryMock.Setup(r => r.GetDecisionTreeRootAsync(treeName))
                 .ReturnsAsync((DecisionNode?)null);
 
             var result = await _sut.GetFirstDecisionAsync(treeName);
@@ -150,7 +160,7 @@ namespace DecisionHelper.UnitTests
             var tree = JsonSerializer.Deserialize<DecisionNode>(treeJson);
 
             var treeName = _fixture.Create<string>();
-            _decisionTreeRepositoryMock.Setup(r => r.GetDecisionTreeAsync(treeName))
+            _decisionTreeRepositoryMock.Setup(r => r.GetDecisionTreeRootAsync(treeName))
                 .ReturnsAsync(tree);
 
             var result = await _sut.GetDecisionTreeAsync(treeName);
@@ -163,7 +173,7 @@ namespace DecisionHelper.UnitTests
         public async Task GetDecisionTreeAsync_ShouldReturnNull_WhenTreeIsNotFound()
         {
             var treeName = _fixture.Create<string>();
-            _decisionTreeRepositoryMock.Setup(r => r.GetDecisionTreeAsync(treeName))
+            _decisionTreeRepositoryMock.Setup(r => r.GetDecisionTreeRootAsync(treeName))
                 .ReturnsAsync((DecisionNode?)null);
 
             var result = await _sut.GetDecisionTreeAsync(treeName);
