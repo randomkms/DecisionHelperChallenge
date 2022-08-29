@@ -5,7 +5,7 @@ using System.Net;
 
 namespace DecisionHelper.API.Controllers
 {
-    [Route("api/[controller]/[action]")]//TODO mb change routing
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class DecisionTreeController : ControllerBase
     {
@@ -17,11 +17,12 @@ namespace DecisionHelper.API.Controllers
         }
 
         [HttpGet]
+        [ActionName("firstDecision")]
         [ProducesResponseType(typeof(DecisionDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public IActionResult FirstDecision([FromQuery] string treeName)
+        public async Task<IActionResult> GetFirstDecisionAsync([FromQuery] string treeName)
         {
-            var result = _decisionTreeQueries.GetFirstDecision(treeName);
+            var result = await _decisionTreeQueries.GetFirstDecisionAsync(treeName);
             if (result == null)
                 return NotFound();
 
@@ -29,11 +30,12 @@ namespace DecisionHelper.API.Controllers
         }
 
         [HttpGet]
+        [ActionName("decision")]
         [ProducesResponseType(typeof(DecisionDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public IActionResult Decision(Guid decisionId)
+        public async Task<IActionResult> GetDecisionAsync(Guid decisionId)
         {
-            var result = _decisionTreeQueries.GetDecisionById(decisionId);
+            var result = await _decisionTreeQueries.GetDecisionByIdAsync(decisionId);
             if (result == null)
                 return NotFound();
 
@@ -41,11 +43,12 @@ namespace DecisionHelper.API.Controllers
         }
 
         [HttpGet]
+        [ActionName("decisionTree")]
         [ProducesResponseType(typeof(DecisionNodeDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public IActionResult DecisionTree(string treeName)
+        public async Task<IActionResult> GetDecisionTreeAsync(string treeName)
         {
-            var result = _decisionTreeQueries.GetDecisionTree(treeName);
+            var result = await _decisionTreeQueries.GetDecisionTreeAsync(treeName);
             if (result == null)
                 return NotFound();
 
@@ -53,10 +56,11 @@ namespace DecisionHelper.API.Controllers
         }
 
         [HttpGet]
+        [ActionName("decisionTrees")]
         [ProducesResponseType(typeof(IReadOnlyList<string>), (int)HttpStatusCode.OK)]
-        public IActionResult DecisionTrees()
+        public async Task<IActionResult> GetDecisionTreesAsync()
         {
-            var result = _decisionTreeQueries.GetDecisionTrees();
+            var result = await _decisionTreeQueries.GetDecisionTreesAsync();
             return Ok(result);
         }
     }

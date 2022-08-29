@@ -2,7 +2,7 @@
 
 namespace DecisionHelper.Infrastructure.Persistence
 {
-    public interface IStorage
+    public interface IInMemoryStorage
     {
         IDictionary<Guid, DecisionNode> Nodes { get; }
         IDictionary<string, DecisionNode> Trees { get; }
