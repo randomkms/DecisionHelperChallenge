@@ -30,7 +30,7 @@ namespace DecisionHelper.UnitTests
         }
 
         [Fact]
-        public async Task GetDecisionTreesAsync_ShouldReturnSortedTreeNames_WhenDataIsValid()
+        public async Task GetDecisionTreesAsync_ShouldReturnSortedTreeInfos_WhenDataIsValid()
         {
             var treesInfos = new[]
             {

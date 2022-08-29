@@ -1,0 +1,1 @@
+﻿{"id":"690572a8-e286-479b-801d-c5fa3cff8573","question":"Do I deserve it?","result":null,"possibleAnswers":[{"id":"f64ddcd5-6c01-48ee-a9ec-27fb45314a11","answer":"Yes"},{"id":"91163d42-ecc6-4e8d-9343-9b27b82386ef","answer":"No"}]}

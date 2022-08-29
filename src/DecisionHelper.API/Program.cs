@@ -3,40 +3,49 @@ using DecisionHelper.Infrastructure;
 using StackExchange.Redis.Extensions.Core.Configuration;
 using StackExchange.Redis.Extensions.Newtonsoft;
 
-const string corsPolicyName = "AllowAll";
-
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddCorsConfig(corsPolicyName);
-builder.Services.AddControllers();
-
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddInfrastructure(true);
-builder.Services.AddCustomServices();
-
-builder.Configuration.AddEnvironmentVariables();
-
-builder.Services.AddStackExchangeRedisExtensions<NewtonsoftSerializer>((options) =>
+namespace DecisionHelper.API
 {
-    return new[] { builder.Configuration.GetSection("Redis").Get<RedisConfiguration>() };
-});
+    public class Program
+    {
+        private static void Main(string[] args)
+        {
+            const string corsPolicyName = "AllowAll";
 
-var app = builder.Build();
+            var builder = WebApplication.CreateBuilder(args);
 
-app.Services.SeedInitialData();
+            builder.Services.AddCorsConfig(corsPolicyName);
+            builder.Services.AddControllers();
 
-app.UseCors(corsPolicyName);
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+            builder.Services.AddInfrastructure(true);
+            builder.Services.AddCustomServices();
+
+            builder.Configuration.AddEnvironmentVariables();
+
+            builder.Services.AddStackExchangeRedisExtensions<NewtonsoftSerializer>((options) =>
+            {
+                return new[] { builder.Configuration.GetSection("Redis").Get<RedisConfiguration>() };
+            });
+
+            var app = builder.Build();
+
+            app.Services.SeedInitialData();
+
+            app.UseCors(corsPolicyName);
+
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
+
+            app.UseHttpsRedirection();
+
+            app.MapControllers();
+
+            app.Run();
+        }
+    }
 }
-
-app.UseHttpsRedirection();
-
-app.MapControllers();
-
-app.Run();

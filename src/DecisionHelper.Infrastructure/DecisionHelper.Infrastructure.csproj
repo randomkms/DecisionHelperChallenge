@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <InternalsVisibleTo Include="DecisionHelper.IntegrationTests"/>
+  </ItemGroup>
+  
+  <ItemGroup>
     <None Remove="DecisionTrees\ComputerGames.json" />
     <None Remove="DecisionTrees\Doughnut.json" />
     <None Remove="DecisionTrees\Lobster.json" />
