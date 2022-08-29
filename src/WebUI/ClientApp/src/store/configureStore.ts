@@ -1,6 +1,3 @@
-import authReducer from './authSlice';
-import formReducer from './formSlice';
-import weatherReducer from './weatherSlice';
 import decisionReducer from './decisionSlice';
 import decisionTreeReducer from './decisionTreeSlice';
 import decisionTreesReducer from './decisionTreesSlice';
@@ -9,9 +6,6 @@ import { configureStore } from '@reduxjs/toolkit'
 
 export const store = configureStore({
   reducer: {
-    auth: authReducer,
-    form: formReducer,
-    weather: weatherReducer,
     decision: decisionReducer,
     decisionTree: decisionTreeReducer,
     decisionTrees: decisionTreesReducer

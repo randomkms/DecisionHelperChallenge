@@ -15,12 +15,10 @@ export type PossibleAnswer = Readonly<{
 }>;
 
 export type DecisionState = Readonly<{
-  isLoading: boolean;
   currentDecision: Decision | null;
 }>;
 
 const initialState: DecisionState = {
-  isLoading: true,
   currentDecision: null
 };
 
@@ -29,12 +27,13 @@ export const decisionSlice = createSlice({
   initialState,
   reducers: {
     getFirstDecision: (state, action: PayloadAction<Decision>) => {
-      state.isLoading = false;
       state.currentDecision = action.payload;
     },
-    getDecisionById: (state, action: PayloadAction<Decision>) => {// TODO mb add setLoading or something like it
-      state.isLoading = false;
+    getDecisionById: (state, action: PayloadAction<Decision>) => {
       state.currentDecision = action.payload;
+    },
+    clearCurrentDecision: (state) => {
+      state.currentDecision = null;
     }
   }
 });
@@ -65,6 +64,6 @@ export const getDecisionByIdAsync = createAsyncThunk(
   }
 );
 
-export const { getFirstDecision, getDecisionById } = decisionSlice.actions;
+export const { getFirstDecision, getDecisionById, clearCurrentDecision } = decisionSlice.actions;
 
 export default decisionSlice.reducer;

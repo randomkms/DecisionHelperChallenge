@@ -1,12 +1,8 @@
-import { useIsLoggedIn } from '../hooks';
 import { Routes as routes } from '../config';
 import type { FunctionComponent } from 'react';
 import { NavLink, generatePath } from 'react-router-dom';
-import { ReactComponent as BulmaLogoSVG } from '../assets/image/BulmaLogo.svg';
 
 const Navbar: FunctionComponent = () => {
-  //const isLoggedIn = useIsLoggedIn();
-
   return (
     <nav
       role="navigation"
@@ -15,12 +11,7 @@ const Navbar: FunctionComponent = () => {
     >
       <div className="navbar-wrapper">
         <div className="brand-wrapper">
-          <BulmaLogoSVG
-            width="130"
-            height="65"
-            aria-hidden={true}
-            title="bulma.io-logo"
-          />
+        <p className="title is-1 has-text-white">Lobster Inc</p>
         </div>
         <div className="navbar-routes">
           {/* isLoggedIn && */

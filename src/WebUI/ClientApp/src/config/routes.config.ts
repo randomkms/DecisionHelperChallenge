@@ -1,6 +1,6 @@
 import type { ComponentType } from 'react';
 import type { Params } from 'react-router';
-import { Login, Dashboard, FetchData, Form, DecisionMaker } from '../containers';
+import { Dashboard, DecisionMaker } from '../containers';
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import DecisionTree from 'src/containers/DecisionTree';
 
@@ -24,41 +24,11 @@ export type Route = Readonly<{
 
 export const Routes: Route[] = [
   {
+    showInNav: true,
     path: '/',
-    icon: 'sign-out-alt',
-    name: 'Logout',
-    Component: Login,
-    transition: TRANSITION_DEFAULT
-  },
-  {
-    path: '/form',
-    showInNav: true,
-    name: 'Form',
-    Component: Form,
-    transition: {
-      classNames: 'page-slide-left',
-      timeout: { enter: 350, exit: 250 }
-    }
-  },
-  {
-    showInNav: true,
-    path: '/home',
     name: 'Home',
     Component: Dashboard,
     transition: TRANSITION_DEFAULT
-  },
-  {
-    showInNav: true,
-    name: 'Fetch',
-    path: '/fetch/:startDateIndex',
-    Component: FetchData,
-    transition: {
-      classNames: 'page-slide-right',
-      timeout: { enter: 350, exit: 250 }
-    },
-    params: {
-      startDateIndex: '0'
-    }
   },
   {
     showInNav: true,

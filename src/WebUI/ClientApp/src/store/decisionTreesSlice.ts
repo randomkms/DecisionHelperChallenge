@@ -2,12 +2,10 @@ import { DecisionApi } from 'src/api';
 import { createAsyncThunk, createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 export type DecisionTreesState = Readonly<{
-  isLoading: boolean;
   decisionTreesNames: string[];
 }>;
 
 const initialState: DecisionTreesState = {
-  isLoading: true,
   decisionTreesNames: []
 };
 
@@ -16,7 +14,6 @@ export const decisionTreesSlice = createSlice({
   initialState,
   reducers: {
     getDecisionTrees: (state, action: PayloadAction<string[]>) => {
-      state.isLoading = false;
       state.decisionTreesNames = action.payload;
     }
   }

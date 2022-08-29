@@ -1,0 +1,59 @@
+{
+  "Question": "Are you Brave?  At Lobster being brave means that you have the internal drive to progress the boundaries of your own capability, the courage to explore uncharted territory, and by expanding your perspective and stretching your capacity.",
+  "Children": [
+    {
+      "Question": "Are you caring? To care means to listen, communicate, understand, dovetail, call out accountability and act in respect.",
+      "Answer": "Yes",
+      "Children": [
+        {
+          "Question": "Are you tenacious? At Lobster, we are relentless in the pursuit of our goals. We learn from setbacks, remain focused and never resign to mediocrity.",
+          "Answer": "Yes",
+          "Children": [
+            {
+              "Question": "Are you inventive? At Lobster, we believe that inventive willpower is a renewable resource that breeds when it\u0027s shared. Our solutions push past complexity and strive for simplicity.",
+              "Answer": "Yes",
+              "Children": [
+                {
+                  "Answer": "Yes",
+                  "Question": "Are you purposeful? At Lobster, we act with intent. We are goal-oriented and experiment in a measured way to learn through experience. We are committed to continuous, iterative improvement for our customers and ourselves.",
+                  "Children": [
+                    {
+                      "Answer": "Yes",
+                      "Result": "You are good for Lobster",
+                      "Children": []
+                    },
+                    {
+                      "Answer": "No",
+                      "Result": "Don\u0027t worry, you are good for some other company, keep searching!",
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "Answer": "No",
+                  "Result": "Don\u0027t worry, you are good for some other company, keep searching!",
+                  "Children": []
+                }
+              ]
+            },
+            {
+              "Answer": "No",
+              "Result": "Don\u0027t worry, you are good for some other company, keep searching!",
+              "Children": []
+            }
+          ]
+        },
+        {
+          "Answer": "No",
+          "Result": "Don\u0027t worry, you are good for some other company, keep searching!",
+          "Children": []
+        }
+      ]
+    },
+    {
+      "Answer": "No",
+      "Result": "Don\u0027t worry, you are good for some other company, keep searching!",
+      "Children": []
+    }
+  ]
+}

@@ -13,7 +13,7 @@ const StyledFooter = styled.footer`
   margin: auto;
   display: block;
   font-size: 1.15rem;
-  padding: 3rem 1.5rem;
+  padding: 1rem 1rem;
   background-color: #33363b;
 
   @media all and (max-width: 769px) {
@@ -65,25 +65,12 @@ const Footer: FunctionComponent = () => (
         target="_blank"
         aria-label="GitHub"
         rel="noopener noreferrer"
-        href="https://github.com/based-ghost"
-      >
+        href="https://github.com/randomkms/DecisionHelperChallenge">
         <FontAwesomeIcon icon={['fab', 'github']} />
-      </FooterLink>
-      <FooterLink
-        href="#/"
-        aria-label="Twitter"
-      >
-        <FontAwesomeIcon icon={['fab', 'twitter']} />
-      </FooterLink>
-      <FooterLink
-        href="#/"
-        aria-label="Medium"
-      >
-        <FontAwesomeIcon icon={['fab', 'etsy']} />
       </FooterLink>
     </FooterButtons>
     <BrandContent>
-      {`Copyright © ${new Date().getFullYear()} based-ghost LLC`}
+      {`Copyright © ${new Date().getFullYear()}`}
     </BrandContent>
   </StyledFooter>
 );

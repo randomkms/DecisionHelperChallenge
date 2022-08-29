@@ -10,13 +10,11 @@ export type DecisionNode = Readonly<{
 }>;
 
 export type DecisionTreeState = Readonly<{
-  isLoading: boolean;
   treeRoot: DecisionNode | null;
   visitedNodesIds: string[];
 }>;
 
 const initialState: DecisionTreeState = {
-  isLoading: true,
   treeRoot: null,
   visitedNodesIds: []
 };
@@ -26,7 +24,6 @@ export const decisionTreeSlice = createSlice({
   initialState,
   reducers: {
     getDecisionTree: (state, action: PayloadAction<DecisionNode>) => {
-      state.isLoading = false;
       state.treeRoot = action.payload;
     },
     setFirstVisitedNodeId: (state, action: PayloadAction<string>) => {
