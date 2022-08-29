@@ -14,28 +14,28 @@ namespace DecisionHelper.API.Services
             _decisionTreeRepository = decisionTreeRepository;
         }
 
-        public IReadOnlyList<string> GetDecisionTrees()
+        public async Task<IReadOnlyList<string>> GetDecisionTreesAsync()
         {
-            return _decisionTreeRepository.GetDecisionTrees()
+            return (await _decisionTreeRepository.GetDecisionTreesAsync())
                 .OrderBy(t => t) //TODO mb move to repo
                 .ToArray();
         }
 
-        public DecisionDto? GetFirstDecision(string treeName)
+        public async Task<DecisionDto?> GetFirstDecisionAsync(string treeName)
         {
-            var decisionTree = _decisionTreeRepository.GetDecisionTree(treeName);
+            var decisionTree = await _decisionTreeRepository.GetDecisionTreeAsync(treeName);
             return decisionTree == null ? null : MapNodeToDecisionDto(decisionTree);
         }
 
-        public DecisionDto? GetDecisionById(Guid chosenNodeId)
+        public async Task<DecisionDto?> GetDecisionByIdAsync(Guid chosenNodeId)
         {
-            var decision = _decisionTreeRepository.GetDecisionById(chosenNodeId);
+            var decision = await _decisionTreeRepository.GetDecisionByIdAsync(chosenNodeId);
             return decision == null ? null : MapNodeToDecisionDto(decision);
         }
 
-        public DecisionNodeDto? GetDecisionTree(string treeName)
+        public async Task<DecisionNodeDto?> GetDecisionTreeAsync(string treeName)
         {
-            var decisionTree = _decisionTreeRepository.GetDecisionTree(treeName);
+            var decisionTree = await _decisionTreeRepository.GetDecisionTreeAsync(treeName);
             return decisionTree == null ? null : MapNodeToDecisionNodeDto(decisionTree);
         }
 

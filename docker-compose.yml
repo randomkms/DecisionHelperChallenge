@@ -9,11 +9,21 @@ services:
     ports:
       - "5010:80"
 
+  storage:
+    image: redis:7.0-alpine
+    ports:
+      - '5020:6379'
+
   decisionhelper.api:
     image: ${DOCKER_REGISTRY-}decisionhelperapi
+    depends_on:
+      - storage
     build:
       context: .
       dockerfile: src/DecisionHelper.API/Dockerfile
     ports:
       - "5000:80"
       - "5001:443"
+    environment:
+      REDIS__HOSTS__0__HOST: storage
+      REDIS__HOSTS__0__PORT: 6379

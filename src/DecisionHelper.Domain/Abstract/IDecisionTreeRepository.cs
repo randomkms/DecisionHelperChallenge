@@ -4,8 +4,8 @@ namespace DecisionHelper.Domain.Abstract
 {
     public interface IDecisionTreeRepository
     {
-        DecisionNode? GetDecisionById(Guid chosenNodeId);
-        DecisionNode? GetDecisionTree(string treeName);
-        IReadOnlyCollection<string> GetDecisionTrees();
+        Task<DecisionNode?> GetDecisionByIdAsync(Guid chosenNodeId);
+        Task<DecisionNode?> GetDecisionTreeAsync(string treeName);
+        Task<IReadOnlyCollection<string>> GetDecisionTreesAsync();
     }
 }

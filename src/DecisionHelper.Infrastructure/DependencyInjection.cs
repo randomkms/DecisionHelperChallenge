@@ -1,21 +1,33 @@
 ﻿using DecisionHelper.Domain.Abstract;
-using DecisionHelper.Infrastructure.Persistence;
-using DecisionHelper.Infrastructure.Repositories;
+using DecisionHelper.Infrastructure.Repositories.InMemory;
+using DecisionHelper.Infrastructure.Repositories.Redis;
+using DecisionHelper.Infrastructure.Seeds;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DecisionHelper.Infrastructure
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, bool useRedis)
         {
-            var storage = new Storage();
-            services.AddSingleton<IStorage>(storage);
-            services.AddSingleton<IDecisionTreeRepository, DecisionTreeRepository>();
-
-            new DecisionTreeSeed(storage).Seed();
+            if (useRedis)
+            {
+                services.AddSingleton<IDecisionTreeRepository, RedisDecisionTreeRepository>();
+                services.AddTransient<IDecisionTreeSeed, RedisDecisionTreeSeed>();
+            }
+            else
+            {
+                services.AddSingleton<IDecisionTreeRepository, InMemoryDecisionTreeRepository>();
+                services.AddTransient<IDecisionTreeSeed, InMemoryDecisionTreeSeed>();
+            }
 
             return services;
+        }
+
+        public static void SeedInitialData(this IServiceProvider serviceProvider)
+        {
+            var treeSeed = serviceProvider.GetRequiredService<IDecisionTreeSeed>();
+            treeSeed.SeedAsync().Wait();
         }
     }
 }

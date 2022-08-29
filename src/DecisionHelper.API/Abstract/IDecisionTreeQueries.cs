@@ -4,12 +4,12 @@ namespace DecisionHelper.API.Abstract
 {
     public interface IDecisionTreeQueries
     {
-        public IReadOnlyList<string> GetDecisionTrees();
+        public Task<IReadOnlyList<string>> GetDecisionTreesAsync();
 
-        public DecisionDto? GetFirstDecision(string treeName);
+        public Task<DecisionDto?> GetFirstDecisionAsync(string treeName);
 
-        public DecisionDto? GetDecisionById(Guid chosenNodeId);
+        public Task<DecisionDto?> GetDecisionByIdAsync(Guid chosenNodeId);
 
-        public DecisionNodeDto? GetDecisionTree(string treeName);
+        public Task<DecisionNodeDto?> GetDecisionTreeAsync(string treeName);
     }
 }
