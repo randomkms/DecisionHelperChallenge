@@ -17,7 +17,7 @@ namespace DecisionHelper.API.Services
         public async Task<IReadOnlyList<string>> GetDecisionTreesAsync()
         {
             return (await _decisionTreeRepository.GetDecisionTreesAsync())
-                .OrderBy(t => t) //TODO mb move to repo
+                .OrderBy(t => t)
                 .ToArray();
         }
 
@@ -39,7 +39,7 @@ namespace DecisionHelper.API.Services
             return decisionTree == null ? null : MapNodeToDecisionNodeDto(decisionTree);
         }
 
-        private static DecisionDto MapNodeToDecisionDto(DecisionNode node)// TODO mb move to mapper
+        private static DecisionDto MapNodeToDecisionDto(DecisionNode node)
         {
             return new DecisionDto(node.Id, node.Question, node.Result, node.Children
                 .Select(n => MapNodeToPossibleAnswerDto(n)).ToArray());

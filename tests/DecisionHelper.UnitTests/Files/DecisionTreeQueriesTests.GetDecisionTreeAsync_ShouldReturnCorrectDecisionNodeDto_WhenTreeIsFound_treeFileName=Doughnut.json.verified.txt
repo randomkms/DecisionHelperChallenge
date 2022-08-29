@@ -1,0 +1,52 @@
+﻿{
+  Id: Guid_1,
+  Question: Do I want a doughnut?,
+  Children: [
+    {
+      Id: Guid_2,
+      Question: Do I deserve it?,
+      Answer: Yes,
+      Children: [
+        {
+          Id: Guid_3,
+          Question: Are you sure?,
+          Answer: Yes,
+          Children: [
+            {
+              Id: Guid_4,
+              Answer: Yes,
+              Result: Get it
+            },
+            {
+              Id: Guid_5,
+              Answer: No,
+              Result: Do jumping jacks first
+            }
+          ]
+        },
+        {
+          Id: Guid_6,
+          Question: Is it a good doughnut?,
+          Answer: No,
+          Children: [
+            {
+              Id: Guid_7,
+              Answer: Yes,
+              Result: What are you waiting for? Grab it now
+            },
+            {
+              Id: Guid_8,
+              Answer: No,
+              Result: Wait 'till you find a sinful, unforgettable doughnut
+            }
+          ]
+        }
+      ]
+    },
+    {
+      Id: Guid_9,
+      Answer: No,
+      Result: Maybe you want an apple?
+    }
+  ]
+}
