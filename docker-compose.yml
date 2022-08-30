@@ -6,8 +6,6 @@ services:
     build:
       context: .
       dockerfile: src/WebUI/Dockerfile
-    ports:
-      - "5010:80"
     environment:
       - CHOKIDAR_USEPOLLING=true
 
@@ -23,9 +21,6 @@ services:
     build:
       context: .
       dockerfile: src/DecisionHelper.API/Dockerfile
-    ports:
-      - "5000:80"
-      - "5001:443"
     environment:
       REDIS__HOSTS__0__HOST: storage
       REDIS__HOSTS__0__PORT: 6379
