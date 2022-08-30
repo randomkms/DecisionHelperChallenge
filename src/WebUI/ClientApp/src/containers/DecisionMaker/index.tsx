@@ -16,7 +16,9 @@ const DecisionMaker: FunctionComponent = () => {
     const decisionTreesInfos = useAppSelector<DecisionTreeInfo[]>((state) => state.decisionTrees.decisionTreesInfos);
     const { treeName } = useParams();
 
-    dispatch(clearCurrentDecision());
+    useEffect(() => {
+        dispatch(clearCurrentDecision());
+    }, [treeName]);
 
     useEffect(() => {
         dispatch(getDecisionTreesAsync());

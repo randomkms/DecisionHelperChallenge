@@ -1,6 +1,5 @@
 import { Provider } from 'react-redux';
 import { createRoot } from 'react-dom/client';
-import { StrictMode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './assets/style/scss/site.scss';
@@ -16,14 +15,14 @@ const root = createRoot(container as HTMLElement);
 
 function AppRenderer() {
   return (
-    <StrictMode>
+    <>
       <BrowserRouter>
         <Provider store={store}>
           <App />
         </Provider>
       </BrowserRouter>
       <ToastContainer {...toastifyProps} />
-    </StrictMode>
+    </>
   );
 }
 

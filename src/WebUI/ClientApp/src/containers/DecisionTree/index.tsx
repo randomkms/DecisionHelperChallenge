@@ -70,7 +70,7 @@ const DecisionTree: FunctionComponent = () => {
             x: dimensions.width / 2,
             y: dimensions.height / 20,
         });
-    }, []);
+    }, [decisionTree]);
 
     if (!decisionTree)
         return null;

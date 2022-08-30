@@ -1,7 +1,6 @@
 import { useCallback, useEffect, type FunctionComponent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { getDecisionTreeAsync } from 'src/store/decisionTreeSlice';
 import { useAppSelector, useAppDispatch } from '../../store';
 import { getDecisionByIdAsync, getFirstDecisionAsync, type Decision } from '../../store/decisionSlice';
 
@@ -15,7 +14,7 @@ const DecisionChooser: FunctionComponent<DecisionChooserProps> = ({ treeName }) 
 
     useEffect(() => {
         dispatch(getFirstDecisionAsync(treeName));
-    }, [dispatch, treeName]);
+    }, [treeName]);
 
     useEffect(() => {
         if (isResult)
@@ -23,7 +22,6 @@ const DecisionChooser: FunctionComponent<DecisionChooserProps> = ({ treeName }) 
     }, [isResult]);
 
     const showDecisionTreeHandler = useCallback(() => {
-        dispatch(getDecisionTreeAsync(treeName));
         navigate(`/decisionTreeResult/${treeName}`);
     }, [treeName])
 
@@ -32,7 +30,7 @@ const DecisionChooser: FunctionComponent<DecisionChooserProps> = ({ treeName }) 
             {isResult && <><h1 className="title is-4">{currentDecision?.result}</h1>
                 <button
                     className="button is-warning is-large"
-                    onClick={() => showDecisionTreeHandler()}>
+                    onClick={showDecisionTreeHandler}>
                     Show decision tree
                 </button>
             </>}
