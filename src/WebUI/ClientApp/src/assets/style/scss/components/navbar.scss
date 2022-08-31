@@ -69,13 +69,13 @@
         }
 
         &:hover {
-          color: $color-blue-highlight;
+          color: $yellow;
           background-color: transparent;
         }
 
         &.is-active {
-          color: $color-blue-highlight !important;
-          border-bottom-color: $color-blue-highlight !important;
+          color: $yellow !important;
+          border-bottom-color: $yellow !important;
         }
       }
     }

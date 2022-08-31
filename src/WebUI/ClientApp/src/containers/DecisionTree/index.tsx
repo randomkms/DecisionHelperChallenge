@@ -10,28 +10,28 @@ const renderNodeWithCustomEvents = ({ nodeDatum }: { nodeDatum: RawNodeDatum }, 
     const maxNameLength = 24;
     const formattedName = nodeDatum.name.length > maxNameLength ? nodeDatum.name.substring(0, maxNameLength) + "..." : nodeDatum.name;
     const rectWidth = 190;
-    const reactHeight = 50;
+    const rectHeight = 50;
     const rectX = -rectWidth / 2;
     const calculatedTextX = nodeDatum.name.length > maxNameLength ? rectX : -nodeDatum.name.length * 4;
-    const answer = nodeDatum.attributes!.answer as string; // TODO add calculated width
+    const answer = nodeDatum.attributes!.answer as string;
     const isVisitedNode = visitedNodesIds.has(nodeDatum.attributes!.id as string);
 
     return <g>
-        <rect fill={isVisitedNode ? "yellow" : ""} width={rectWidth} height={reactHeight} x={rectX} y={-reactHeight / 2} opacity={0.5} strokeWidth={1}>
+        <rect rx={10} ry={10} fill={isVisitedNode ? "#ffdd57" : ""} width={rectWidth} height={rectHeight} x={rectX} y={-rectHeight / 2} opacity={0.5} strokeWidth={1}>
             <title>{nodeDatum.name}</title>
         </rect>
         {answer &&
-            <text fill="black" strokeWidth="1" stroke={"grey"} x={-answer.length * 4} dy={-60}>
+            <text fontFamily={"Roboto Mono"} fill="black" strokeWidth="1" stroke={"grey"} x={-answer.length * 4} dy={-60}>
                 {answer}
                 <title>{answer}</title>
             </text>
         }
 
-        <text stroke={isLeaf ? "red" : "black"} x={calculatedTextX} y={5} strokeWidth={1}>
+        <text fontFamily={"Roboto Mono"} stroke={isLeaf ? "#e93e60" : "black"} x={calculatedTextX} y={5} strokeWidth={1}>
             <title>{nodeDatum.name}</title>
             {formattedName}
         </text>
-    </g >
+    </g>
 };
 
 const mapDecisionTree = (treeRoot: DecisionNode) => {
