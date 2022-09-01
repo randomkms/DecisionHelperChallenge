@@ -41,7 +41,6 @@ namespace DecisionHelper.UnitTests
                 },
                 new DecisionTreeInfo("Doughnut"),
             };
-
             _decisionTreeRepositoryMock.Setup(r => r.GetDecisionTreesAsync())
                 .ReturnsAsync(treesInfos);
 
@@ -157,13 +156,11 @@ namespace DecisionHelper.UnitTests
         public async Task GetDecisionTreeAsync_ShouldReturnCorrectDecisionNodeDto_WhenTreeIsFound(string treeFileName)
         {
             var treeJson = File.ReadAllText(Path.Combine(TestFilesFolder, treeFileName));
-            var tree = JsonSerializer.Deserialize<DecisionNode>(treeJson);
+            var tree = JsonConvert.DeserializeObject<DecisionTree>(treeJson)!;
+            _decisionTreeRepositoryMock.Setup(r => r.GetDecisionTreeRootAsync(tree.Name))
+                .ReturnsAsync(tree.Root);
 
-            var treeName = _fixture.Create<string>();
-            _decisionTreeRepositoryMock.Setup(r => r.GetDecisionTreeRootAsync(treeName))
-                .ReturnsAsync(tree);
-
-            var result = await _sut.GetDecisionTreeAsync(treeName);
+            var result = await _sut.GetDecisionTreeAsync(tree.Name);
 
             await Verify(result)
                 .UseParameters(treeFileName);

@@ -19,7 +19,7 @@ namespace DecisionHelper.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddInfrastructure(true);
+            builder.Services.AddInfrastructure(builder.Configuration.GetValue<bool>("UseRedis"));
             builder.Services.AddCustomServices();
 
             builder.Configuration.AddEnvironmentVariables();

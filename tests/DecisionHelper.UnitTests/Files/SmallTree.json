@@ -1,4 +1,7 @@
 {
-  "Question": "Do I want a doughnut?",
-  "Children": []
+  "Name": "Small tree",
+  "Root": {
+    "Question": "Do I want a doughnut?",
+    "Children": []
+  }
 }
