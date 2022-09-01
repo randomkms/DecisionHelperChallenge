@@ -1,4 +1,5 @@
 ﻿using DecisionHelper.Domain.Abstract;
+using DecisionHelper.Infrastructure.Persistence;
 using DecisionHelper.Infrastructure.Repositories.InMemory;
 using DecisionHelper.Infrastructure.Repositories.Redis;
 using DecisionHelper.Infrastructure.Seeds;
@@ -17,6 +18,7 @@ namespace DecisionHelper.Infrastructure
             }
             else
             {
+                services.AddSingleton<IInMemoryStorage, InMemoryStorage>();
                 services.AddSingleton<IDecisionTreeRepository, InMemoryDecisionTreeRepository>();
                 services.AddTransient<IDecisionTreeSeed, InMemoryDecisionTreeSeed>();
             }

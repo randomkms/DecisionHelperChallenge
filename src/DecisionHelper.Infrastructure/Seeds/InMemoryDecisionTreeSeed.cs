@@ -7,7 +7,7 @@ namespace DecisionHelper.Infrastructure.Seeds
     {
         private readonly IInMemoryStorage _storage;
 
-        internal InMemoryDecisionTreeSeed(IInMemoryStorage storage)
+        public InMemoryDecisionTreeSeed(IInMemoryStorage storage)
         {
             _storage = storage;
         }
