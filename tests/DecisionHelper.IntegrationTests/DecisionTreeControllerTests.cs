@@ -31,7 +31,6 @@ namespace DecisionHelper.IntegrationTests
                         typeName: type.Name,
                         methodName: method.Name);
                 });
-            VerifierSettings.ScrubLinesContaining("traceId");
         }
 
         private static WebApplicationFactory<Program> SetupFactory(WebApplicationFactory<Program> factory)
