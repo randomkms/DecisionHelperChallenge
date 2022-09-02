@@ -1,1 +1,43 @@
-﻿{"id":"690572a8-e286-479b-801d-c5fa3cff8573","question":"Do I deserve it?","result":null,"possibleAnswers":[{"id":"f64ddcd5-6c01-48ee-a9ec-27fb45314a11","answer":"Yes"},{"id":"91163d42-ecc6-4e8d-9343-9b27b82386ef","answer":"No"}]}
+﻿{
+  response: {
+    Version: 1.1,
+    Content: {
+      Headers: [
+        {
+          Key: Content-Type,
+          Value: [
+            application/json; charset=utf-8
+          ]
+        }
+      ]
+    },
+    StatusCode: OK,
+    ReasonPhrase: OK,
+    Headers: [],
+    TrailingHeaders: [],
+    RequestMessage: {
+      Version: 1.1,
+      Method: {
+        Method: GET
+      },
+      RequestUri: 'http://localhost/api/DecisionTree/decision?decisionId=690572a8-e286-479b-801d-c5fa3cff8573',
+      Headers: []
+    },
+    IsSuccessStatusCode: true
+  },
+  responseBody: {
+    id: Guid_1,
+    possibleAnswers: [
+      {
+        answer: Yes,
+        id: Guid_2
+      },
+      {
+        answer: No,
+        id: Guid_3
+      }
+    ],
+    question: Do I deserve it?,
+    result: null
+  }
+}

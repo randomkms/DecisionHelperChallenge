@@ -1,1 +1,43 @@
-﻿{"id":"3d8649d8-28a3-48d5-bbb0-13b6cafb07cd","question":"Do I want a doughnut?","result":null,"possibleAnswers":[{"id":"690572a8-e286-479b-801d-c5fa3cff8573","answer":"Yes"},{"id":"e0101dc5-d839-4f54-a9b5-075bddc810ac","answer":"No"}]}
+﻿{
+  response: {
+    Version: 1.1,
+    Content: {
+      Headers: [
+        {
+          Key: Content-Type,
+          Value: [
+            application/json; charset=utf-8
+          ]
+        }
+      ]
+    },
+    StatusCode: OK,
+    ReasonPhrase: OK,
+    Headers: [],
+    TrailingHeaders: [],
+    RequestMessage: {
+      Version: 1.1,
+      Method: {
+        Method: GET
+      },
+      RequestUri: 'http://localhost/api/DecisionTree/firstDecision?treeName=CorrectTreeId',
+      Headers: []
+    },
+    IsSuccessStatusCode: true
+  },
+  responseBody: {
+    id: Guid_1,
+    possibleAnswers: [
+      {
+        answer: Yes,
+        id: Guid_2
+      },
+      {
+        answer: No,
+        id: Guid_3
+      }
+    ],
+    question: Do I want a doughnut?,
+    result: null
+  }
+}

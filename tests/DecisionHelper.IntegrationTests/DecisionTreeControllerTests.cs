@@ -31,6 +31,7 @@ namespace DecisionHelper.IntegrationTests
                         typeName: type.Name,
                         methodName: method.Name);
                 });
+            VerifierSettings.ScrubLinesContaining("traceId");
         }
 
         private static WebApplicationFactory<Program> SetupFactory(WebApplicationFactory<Program> factory)
@@ -74,62 +75,66 @@ namespace DecisionHelper.IntegrationTests
         public async Task GetFirstDecisionAsync_ShouldReturnCorrectDecisionDto_WhenTreeIsFound()
         {
             var response = await _client.GetAsync($"/api/DecisionTree/firstDecision?treeName={CorrectTreeId}");
-            var result = await response.Content.ReadAsStringAsync();
-            await Verify(result);
+            await VerifyResponse(response);
         }
 
         [Fact]
         public async Task GetFirstDecisionAsync_ShouldReturnNotFound_WhenTreeIsNotFound()
         {
             var response = await _client.GetAsync($"/api/DecisionTree/firstDecision?treeName={IncorrectTreeId}");
-            var result = await response.Content.ReadAsStringAsync();
-            var jObject = JObject.Parse(result);
-            jObject["traceId"] = null;
-            await Verify(jObject.ToString());
+            await VerifyResponse(response);
         }
 
         [Fact]
         public async Task GetDecisionAsync_ShouldReturnCorrectDecisionDto_WhenTreeIsFound()
         {
             var response = await _client.GetAsync($"/api/DecisionTree/decision?decisionId={CorrectDecisionId}");
-            var result = await response.Content.ReadAsStringAsync();
-            await Verify(result);
+            await VerifyResponse(response);
         }
 
         [Fact]
         public async Task GetDecisionAsync_ShouldReturnNotFound_WhenTreeIsNotFound()
         {
             var response = await _client.GetAsync($"/api/DecisionTree/decision?decisionId={IncorrectDecisionId}");
-            var result = await response.Content.ReadAsStringAsync();
-            var jObject = JObject.Parse(result);
-            jObject["traceId"] = null;
-            await Verify(jObject.ToString());
+            await VerifyResponse(response);
         }
 
         [Fact]
         public async Task GetDecisionTreeAsync_ShouldReturnCorrectDecisionNodeDto_WhenTreeIsFound()
         {
             var response = await _client.GetAsync($"/api/DecisionTree/decisionTree?treeName={CorrectTreeId}");
-            var result = await response.Content.ReadAsStringAsync();
-            await Verify(result);
+            await VerifyResponse(response);
         }
 
         [Fact]
         public async Task GetDecisionTreeAsync_ShouldReturnNotFound_WhenTreeIsNotFound()
         {
             var response = await _client.GetAsync($"/api/DecisionTree/decisionTree?treeName={IncorrectTreeId}");
-            var result = await response.Content.ReadAsStringAsync();
-            var jObject = JObject.Parse(result);
-            jObject["traceId"] = null;
-            await Verify(jObject.ToString());
+            await VerifyResponse(response);
         }
 
         [Fact]
         public async Task GetDecisionTreesAsync_ShouldReturnSortedTreeInfos_WhenDataIsValid()
         {
             var response = await _client.GetAsync("/api/DecisionTree/decisionTrees");
-            var result = await response.Content.ReadAsStringAsync();
-            await Verify(result);
+            await VerifyResponse(response);
+        }
+
+        private static async Task VerifyResponse(HttpResponseMessage response)
+        {
+            var responseBodyStr = await response.Content.ReadAsStringAsync();
+            var responseBody = ParseResponseBody(responseBodyStr);
+
+            await Verify(new { response, responseBody });
+        }
+
+        private static JToken ParseResponseBody(string responseBodyStr)
+        {
+            var responseBody = JToken.Parse(responseBodyStr);
+            if (responseBody is JObject responseBodyObj && responseBodyObj.ContainsKey("traceId"))
+                responseBodyObj["traceId"] = null;
+
+            return responseBody;
         }
     }
 }
