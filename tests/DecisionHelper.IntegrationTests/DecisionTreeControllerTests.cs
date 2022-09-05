@@ -49,7 +49,7 @@ namespace DecisionHelper.IntegrationTests
             redisClient.Setup(r => r.GetDb(RedisConsts.TreesInfoDb, null))
                 .Returns(treesInfoDb.Object);
             treesDb.Setup(t => t.GetAsync<DecisionNode>(CorrectTreeName, CommandFlags.None))
-                .Returns(Task.FromResult(tree.Root));
+                .Returns(Task.FromResult<DecisionNode?>(tree.Root));
             treesDb.Setup(t => t.GetAsync<DecisionNode>(IncorrectTreeName, CommandFlags.None))
                 .Returns(Task.FromResult<DecisionNode?>(null));
             treesInfoDb.Setup(t => t.GetAsync<IReadOnlyCollection<DecisionTreeInfo>>(RedisConsts.TreesInfoListKey, CommandFlags.None))
