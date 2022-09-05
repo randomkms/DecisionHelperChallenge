@@ -27,19 +27,14 @@
   },
   responseBody: [
     {
-      description: This decision tree will show you what to play,
-      imageUrl: https://media.threatpost.com/wp-content/uploads/sites/103/2019/07/26142447/gamer.jpg,
-      name: Computer games
-    },
-    {
       description: Fun decision tree about doughnuts,
       imageUrl: https://st3.depositphotos.com/1526816/16542/v/450/depositphotos_165420570-stock-illustration-phrase-i-love-donut-with.jpg,
       name: Doughnut
     },
     {
-      description: Find out if you are a good for the Lobster company,
-      imageUrl: https://i.pinimg.com/originals/8d/5e/e2/8d5ee22807e384f09cd6bb7704432860.jpg,
-      name: Lobster
+      description: null,
+      imageUrl: null,
+      name: Test info
     }
   ]
 }

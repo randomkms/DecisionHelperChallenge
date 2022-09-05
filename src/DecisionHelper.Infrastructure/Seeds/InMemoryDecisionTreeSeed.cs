@@ -26,7 +26,7 @@ namespace DecisionHelper.Infrastructure.Seeds
 
         private void AddNodesToDict(DecisionNode node)
         {
-            _storage.Nodes.Add(node.Id, node);
+            _storage.Nodes.Add(node.Id, node.CloneWithOnlyDirectChildren());
             foreach (var child in node.Children)
                 AddNodesToDict(child);
         }

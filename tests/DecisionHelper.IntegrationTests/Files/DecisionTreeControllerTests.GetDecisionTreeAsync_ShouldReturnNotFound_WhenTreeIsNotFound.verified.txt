@@ -20,7 +20,7 @@
       Method: {
         Method: GET
       },
-      RequestUri: 'http://localhost/api/DecisionTree/decisionTree?treeName=IncorrectTreeId',
+      RequestUri: 'http://localhost/api/DecisionTree/decisionTree?treeName=IncorrectTreeName',
       Headers: []
     },
     IsSuccessStatusCode: false

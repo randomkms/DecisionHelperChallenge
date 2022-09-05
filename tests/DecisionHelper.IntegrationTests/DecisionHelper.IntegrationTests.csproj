@@ -10,15 +10,9 @@
 
   <ItemGroup>
     <None Remove="Files\Doughnut.json" />
-    <None Remove="Files\TreeInfos.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Files\TreeInfos.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
     <Content Include="Files\Doughnut.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>

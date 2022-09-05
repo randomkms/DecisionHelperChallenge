@@ -7,8 +7,8 @@ namespace DecisionHelper.IntegrationTests
     [UsesVerify]
     public class DecisionTreeControllerTests : IClassFixture<WebApplicationFactory<Program>>
     {
-        const string CorrectTreeId = "CorrectTreeId";
-        const string IncorrectTreeId = "IncorrectTreeId";
+        const string CorrectTreeName = "CorrectTreeName";
+        const string IncorrectTreeName = "IncorrectTreeName";
 
         const string CorrectDecisionId = "690572a8-e286-479b-801d-c5fa3cff8573";
         const string IncorrectDecisionId = "253472a8-e286-479b-801d-c5fa3cff8573";
@@ -36,9 +36,7 @@ namespace DecisionHelper.IntegrationTests
         private static WebApplicationFactory<Program> SetupFactory(WebApplicationFactory<Program> factory)
         {
             var treeJson = File.ReadAllText(Path.Combine(TestFilesFolder, "Doughnut.json"));
-            var tree = JsonSerializer.Deserialize<DecisionNode>(treeJson);
-            var treeInfosJson = File.ReadAllText(Path.Combine(TestFilesFolder, "TreeInfos.json"));
-            var treeInfos = JsonSerializer.Deserialize<List<DecisionTreeInfo>>(treeInfosJson);
+            var tree = JsonConvert.DeserializeObject<DecisionTree>(treeJson)!;
 
             var redisClient = new Mock<IRedisClient>();
             var treesDb = new Mock<IRedisDatabase>();
@@ -50,14 +48,14 @@ namespace DecisionHelper.IntegrationTests
                 .Returns(nodesDb.Object);
             redisClient.Setup(r => r.GetDb(RedisConsts.TreesInfoDb, null))
                 .Returns(treesInfoDb.Object);
-            treesDb.Setup(t => t.GetAsync<DecisionNode>(CorrectTreeId, CommandFlags.None))
-                .Returns(Task.FromResult(tree));
-            treesDb.Setup(t => t.GetAsync<DecisionNode>(IncorrectTreeId, CommandFlags.None))
+            treesDb.Setup(t => t.GetAsync<DecisionNode>(CorrectTreeName, CommandFlags.None))
+                .Returns(Task.FromResult(tree.Root));
+            treesDb.Setup(t => t.GetAsync<DecisionNode>(IncorrectTreeName, CommandFlags.None))
                 .Returns(Task.FromResult<DecisionNode?>(null));
             treesInfoDb.Setup(t => t.GetAsync<IReadOnlyCollection<DecisionTreeInfo>>(RedisConsts.TreesInfoListKey, CommandFlags.None))
-                .Returns(Task.FromResult<IReadOnlyCollection<DecisionTreeInfo>?>(treeInfos));
+                .Returns(Task.FromResult<IReadOnlyCollection<DecisionTreeInfo>?>(new[] { tree.ToDecisionTreeInfo(), new DecisionTreeInfo("Test info") }));
             nodesDb.Setup(t => t.GetAsync<DecisionNode>(Guid.Parse(CorrectDecisionId).ToString("N"), CommandFlags.None))
-                .Returns(Task.FromResult<DecisionNode?>(tree!.Children[0]));
+                .Returns(Task.FromResult<DecisionNode?>(tree.Root.Children[0]));
             nodesDb.Setup(t => t.GetAsync<DecisionNode>(IncorrectDecisionId, CommandFlags.None))
                 .Returns(Task.FromResult<DecisionNode?>(null));
 
@@ -73,14 +71,14 @@ namespace DecisionHelper.IntegrationTests
         [Fact]
         public async Task GetFirstDecisionAsync_ShouldReturnCorrectDecisionDto_WhenTreeIsFound()
         {
-            var response = await _client.GetAsync($"/api/DecisionTree/firstDecision?treeName={CorrectTreeId}");
+            var response = await _client.GetAsync($"/api/DecisionTree/firstDecision?treeName={CorrectTreeName}");
             await VerifyResponse(response);
         }
 
         [Fact]
         public async Task GetFirstDecisionAsync_ShouldReturnNotFound_WhenTreeIsNotFound()
         {
-            var response = await _client.GetAsync($"/api/DecisionTree/firstDecision?treeName={IncorrectTreeId}");
+            var response = await _client.GetAsync($"/api/DecisionTree/firstDecision?treeName={IncorrectTreeName}");
             await VerifyResponse(response);
         }
 
@@ -101,14 +99,14 @@ namespace DecisionHelper.IntegrationTests
         [Fact]
         public async Task GetDecisionTreeAsync_ShouldReturnCorrectDecisionNodeDto_WhenTreeIsFound()
         {
-            var response = await _client.GetAsync($"/api/DecisionTree/decisionTree?treeName={CorrectTreeId}");
+            var response = await _client.GetAsync($"/api/DecisionTree/decisionTree?treeName={CorrectTreeName}");
             await VerifyResponse(response);
         }
 
         [Fact]
         public async Task GetDecisionTreeAsync_ShouldReturnNotFound_WhenTreeIsNotFound()
         {
-            var response = await _client.GetAsync($"/api/DecisionTree/decisionTree?treeName={IncorrectTreeId}");
+            var response = await _client.GetAsync($"/api/DecisionTree/decisionTree?treeName={IncorrectTreeName}");
             await VerifyResponse(response);
         }
 

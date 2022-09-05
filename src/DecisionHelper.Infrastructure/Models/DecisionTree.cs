@@ -10,7 +10,7 @@ namespace DecisionHelper.Domain.Models
             Root = root;
         }
 
-        internal DecisionNode Root { get; init; }
+        internal DecisionNode Root { get; }
 
         internal DecisionTreeInfo ToDecisionTreeInfo()
         {
