@@ -32,23 +32,17 @@ export const Routes: Route[] = [
   },
   {
     showInNav: true,
-    name: 'Decision Maker',
+    name: 'Decision Helper',
     path: '/decisionTrees',
     Component: DecisionMaker,
-    transition: {
-      classNames: 'page-slide-right',
-      timeout: { enter: 350, exit: 250 }
-    }
+    transition: TRANSITION_DEFAULT
   },
   {
     showInNav: false,
     name: 'DecisionChooser',
     path: '/decisionTrees/:treeName',
     Component: DecisionMaker,
-    transition: {
-      classNames: 'page-slide-right',
-      timeout: { enter: 350, exit: 250 }
-    }
+    transition: TRANSITION_DEFAULT
   },
   {
     showInNav: false,
