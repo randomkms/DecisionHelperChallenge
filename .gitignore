@@ -27,7 +27,6 @@ bld/
 [Ll]og/
 build/
 dist/
-public/
 
 # Visual Studio 2015 cache/options directory
 .vs/
