@@ -8,7 +8,6 @@ namespace DecisionHelper.UnitTests
     [UsesVerify]
     public class DecisionTreeQueriesTests
     {
-        const string TestFilesFolder = "Files";
         private readonly DecisionTreeQueries _sut;
         private readonly Fixture _fixture;
         private readonly Mock<IDecisionTreeRepository> _decisionTreeRepositoryMock = new();
@@ -21,7 +20,7 @@ namespace DecisionHelper.UnitTests
                 (sourceFile, projectDirectory, type, method) =>
                 {
                     return new(
-                        directory: Path.Combine(projectDirectory, TestFilesFolder),
+                        directory: Path.Combine(projectDirectory, Helpers.TestFilesFolder),
                         typeName: type.Name,
                         methodName: method.Name);
                 });
@@ -151,12 +150,11 @@ namespace DecisionHelper.UnitTests
         }
 
         [Theory]
-        [InlineData("Doughnut.json")]
+        [InlineData(Helpers.DoughnutTreeFile)]
         [InlineData("SmallTree.json")]
         public async Task GetDecisionTreeAsync_ShouldReturnCorrectDecisionNodeDto_WhenTreeIsFound(string treeFileName)
         {
-            var treeJson = File.ReadAllText(Path.Combine(TestFilesFolder, treeFileName));
-            var tree = JsonConvert.DeserializeObject<DecisionTree>(treeJson)!;
+            var tree = Helpers.GetDecisionTreeFromFile(treeFileName);
             _decisionTreeRepositoryMock.Setup(r => r.GetDecisionTreeRootAsync(tree.Name))
                 .ReturnsAsync(tree.Root);
 
