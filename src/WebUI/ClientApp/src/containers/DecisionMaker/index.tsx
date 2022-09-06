@@ -6,7 +6,7 @@ import { getDecisionTreesAsync, type DecisionTreeInfo } from 'src/store/decision
 import styled from 'styled-components';
 import { clearCurrentDecision } from 'src/store/decisionSlice';
 
-const StyledDiv = styled.div`
+const ThreeColumnGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 `;
@@ -22,7 +22,7 @@ const DecisionMaker: FunctionComponent = () => {
 
     useEffect(() => {
         dispatch(getDecisionTreesAsync());
-    }, [dispatch]);
+    }, []);
 
     return (
         <div className="section">
@@ -30,7 +30,7 @@ const DecisionMaker: FunctionComponent = () => {
                 <h3 className="title is-3">
                     Going through your journey
                 </h3>
-                <StyledDiv>
+                <ThreeColumnGrid>
                     {!treeName && decisionTreesInfos.map((decisionTreeInfo, i) =>
                         <Link key={i} to={`/decisionTrees/${decisionTreeInfo.name}`}>
                             <div className="column">
@@ -52,7 +52,7 @@ const DecisionMaker: FunctionComponent = () => {
                             </div>
                         </Link>
                     )}
-                </StyledDiv>
+                </ThreeColumnGrid>
 
                 {treeName && <div className="box container-box is-flex is-flex-direction-column is-align-items-center is-justify-content-center">
                     <DecisionChooser treeName={treeName} />

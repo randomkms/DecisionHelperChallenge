@@ -59,7 +59,7 @@ const DecisionTree: FunctionComponent = () => {
     useEffect(() => {
         if (treeName)
             dispatch(getDecisionTreeAsync(treeName));
-    }, [dispatch, treeName]);
+    }, [treeName]);
 
     useEffect(() => {
         if (!treeContainerRef?.current)
